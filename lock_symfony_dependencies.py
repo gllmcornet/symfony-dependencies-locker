@@ -6,7 +6,7 @@ import sys
 ## Define helper functions
 
 def isIntegerPatch(patch):
-    try: 
+    try:
         int(patch)
         return True
     except ValueError:
@@ -42,10 +42,10 @@ except:
 ## Check files are correct
 
 if 'require' not in composerJson:
-    raise Exception('Your composer.json is not valid') 
+    raise Exception('Your composer.json is not valid')
 
 if 'packages' not in composerLock:
-    raise Exception('Your composer.lock is not valid') 
+    raise Exception('Your composer.lock is not valid')
 
 for package in composerLock['packages']:
     if package['name'] in composerJson['require']:
@@ -58,7 +58,7 @@ for package in composerLock['packages-dev']:
 
 # Rewrites composer.json file
 
-with open("safran-optronics/composer.json", "w") as write_file:
+with open(path + "composer.json", "w") as write_file:
     try:
         json.dump(composerJson, write_file, indent=4, separators=(',', ': '))
         print("composer.json file was successfully written !")
